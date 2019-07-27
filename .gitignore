@@ -1,0 +1,13 @@
+# Dot files
+*.merlin
+*.vscode
+
+# Node
+node_modules
+
+# Builds
+_build
+*dune-project
+
+# Markdown for now
+*.md
