@@ -1,3 +1,13 @@
 (executable
   (name      serve)
-  (libraries lwt cohttp cohttp-lwt-unix omd re2))
+  (libraries 
+    lwt.unix 
+    core_kernel 
+    lwt 
+    conduit-lwt-unix
+    cohttp
+    cohttp-lwt 
+    cohttp-lwt-unix 
+    omd 
+    re2
+    uri))

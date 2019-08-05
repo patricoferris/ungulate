@@ -5,27 +5,167 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Patrick Ferris</title>
+  <style>@import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text&display=swap');</style>
   <style>
+
+    html, body {
+      font-family: 'Libre Caslon Text', serif;
+      line-height: 1.6em;
+    }
+
+    div a {
+      text-decoration: none;
+      color: goldenrod;
+    }
+
+    div a:hover {
+      text-decoration: underline
+    }
+
+    li a {
+      text-decoration: none;
+      color: black;
+    }
+
+
+    #grid {
+      display: grid;
+      min-width: 400px;
+      max-width: 800px;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    #grid div {
+      padding: 15px;
+    }
+
+    ul#nav {
+      padding: 0px;
+      margin-bottom: 50px;
+    }
+
+    ul#nav li {
+      display: inline;
+      margin: 0px 10px;
+      cursor: pointer;
+    }
+
+    ul#nav li:hover {
+      text-decoration: underline;
+    }
+
+    #img-me {
+      width: 80%;
+      margin: auto;
+      grid-row: 1 / span 2;
+      grid-column: 1 / span 2;
+    }
+
+    #intro {
+      text-align: left;
+      grid-row: 1 / span 2;
+      grid-column: 3 / span 2;
+    }
+
+    #ocaml {
+      grid-row: 3 / span 1;
+      grid-column: 3 / span 2;
+    }
+
     #content {
       display: flex;
-      height: 100vh;
       width: 100vw;
       justify-content: center;
       align-items: center;
       justify-items: center;
+    }
+
+    .about {
+      text-align: left; 
+      grid-row: 1 / span 3;
+      grid-column: 1 / span 4;
+      display: none;
+    }
+
+    .home {
+      display: block;
     }
   </style>
 </head>
 <body>
   <div id="content">
     <div style="text-align: center;">
-      <h1>Work in Progress: Under Construction</h1>
-      <p><a href="https://github.com/patricoferris/ungulate.git">GitHub Repo</a></p>
-      <p>Made with: </p>
-      <a href="https://ocaml.org/" >
-        <img src="http://ocaml.org/logo/Colour/PNG/colour-logo.png" alt="Ocaml Camels" width="400">
-      </a>
+      <h1>Patrick Ferris</h1>
+      <div>
+        <ul id="nav">
+          <li onclick="homeContent()">Home</li>
+          <li><a href="https://medium.com/@patrickferris17" target="_blank">Blog</a></li>
+          <li onclick="aboutContent()">About</li>
+          <li><a href="mailto:pf341@cam.ac.uk" target="_blank">Contact</a></li>
+        </ul>
+      </div>
+      <div id="grid">
+        <div class="about">
+          <p>I have been studying computer science for two years and have learnt a lot. I have always been interested in mathematics but it wasn't until I realised the powerfulness of computers and technology to do social and environmental good that I wanted to study it.</p>
+          <p>
+            I've had some great working experience like spending three months researching and implementing machine learning techniques to predict cancer from patient prescription pathways at <a href="https://healthdatainsight.org.uk/" target="_blank" rel="noopener noreferrer">HDI</a>.
+            Which culminated in being co-authored on my very first <a href="https://link.springer.com/content/pdf/10.1007%2F978-3-030-21642-9_42.pdf" target="_blank" rel="noopener noreferrer">paper</a>. I am also, until September 2019, spending a summer at Amazon in London as a software developer intern on the Prime Video team. 
+          </p>
+          <p>
+            My main passions lie in three main areas: climate change, healthcare and education. I am really interested in seeing how technology can disrupt these areas and bring about the most net social good possible. Check out the blog link above to see some of my articles on teaching and tech.
+            In the future I hope to expand my horizons both in terms of learning and writing to include all three areas.
+          </p>
+          <p>
+            Outside of work and studying I take part in many societies at varying degrees of responsibility. Here are some of my roles I've had to date:
+          </p>
+          <ul>
+            <li>Hackers at Cambridge Juniour Treasurer</li>
+            <li>Pembroke May Ball 2019 Web Master </li>
+            <li>Hack Cambridge 2019 Sponsorship Team</li>
+          </ul>
+        </div>
+        <img class="home" id="img-me" src="https://res.cloudinary.com/patricoferris/image/upload/v1565036148/me.jpg" alt="An image of Patrick Ferris" srcset="">
+        <div class="home" id="intro">
+          Welcome to my site. I'm Patrick, an undergraduate computer scientist who is passionate about technology, climate change, health care and the intersection of all of the above.
+          Currently I am a third year student a <a href="https://www.pem.cam.ac.uk/">Pembroke College</a> at the University of Cambridge. To find out more about me, check that link above. Otherwise have a read of some of 
+          the things I have written.
+        </div>
+        <div class="home" id="ocaml">
+          <p style="font-style: italic">Site under construction</p>
+          <p>Made using &nbsp; 
+            <a href="https://ocaml.org/" >
+              <img src="http://ocaml.org/logo/Colour/PNG/colour-logo.png" alt="Ocaml Camels" width="75">
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
+  <script>
+    const SECTIONS = ["home", "about"];
+    function setDisplay(section, value) {
+      console.log("Setting", section, value)
+      Array.from(document.getElementsByClassName(section)).map(element => {
+        console.log(element);
+        element.setAttribute("style", `display: ${value}`)
+        })
+    }
+
+    function toggleSections(toChange) {
+      const filtered = SECTIONS.filter(s => s !== toChange);
+      filtered.forEach(section => setDisplay(section, "none"));
+      setDisplay(toChange, "block");
+    }
+
+    function homeContent() {
+      toggleSections("home");
+    }
+
+    function aboutContent() {
+      toggleSections("about");
+    }
+
+  </script>
 </body>
 </html>
